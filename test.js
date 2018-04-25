@@ -9,7 +9,9 @@ let generator;
 
 test.beforeEach(async () => {
 	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
-	generator = helpers.createGenerator('nm:app', ['../app'], null, {skipInstall: true});
+	generator = helpers.createGenerator('nm:app', ['../app'], null, {
+		skipInstall: true,
+	});
 });
 
 test.serial('generates expected files', async () => {
@@ -17,13 +19,14 @@ test.serial('generates expected files', async () => {
 		moduleName: 'test',
 		githubUsername: 'test',
 		website: 'test.com',
-		cli: false
+		cli: false,
 	});
 
 	await pify(generator.run.bind(generator))();
 
 	assert.file([
 		'.editorconfig',
+		'.prettierrc.json',
 		'.git',
 		'.gitattributes',
 		'.gitignore',
@@ -33,7 +36,7 @@ test.serial('generates expected files', async () => {
 		'package.json',
 		'readme.md',
 		'test.js',
-		'.npmrc'
+		'.npmrc',
 	]);
 
 	assert.noFile('cli.js');
@@ -44,7 +47,7 @@ test.serial('CLI option', async () => {
 		moduleName: 'test',
 		githubUsername: 'test',
 		website: 'test.com',
-		cli: true
+		cli: true,
 	});
 
 	await pify(generator.run.bind(generator))();
@@ -62,7 +65,7 @@ test.serial('nyc option', async () => {
 		website: 'test.com',
 		cli: false,
 		nyc: true,
-		codecov: false
+		codecov: false,
 	});
 
 	await pify(generator.run.bind(generator))();
@@ -84,7 +87,7 @@ test.serial('codecov option', async () => {
 		website: 'test.com',
 		cli: false,
 		nyc: true,
-		codecov: true
+		codecov: true,
 	});
 
 	await pify(generator.run.bind(generator))();
@@ -100,9 +103,21 @@ test.serial('codecov option', async () => {
 });
 
 test('parse scoped package names', t => {
-	t.is(utils.slugifyPackageName('author/thing'), 'author-thing', 'slugify non-scoped packages');
-	t.is(utils.slugifyPackageName('@author/thing'), '@author/thing', 'accept scoped packages');
-	t.is(utils.slugifyPackageName('@author/hi/there'), 'author-hi-there', 'fall back to regular slugify if invalid scoped name');
+	t.is(
+		utils.slugifyPackageName('author/thing'),
+		'author-thing',
+		'slugify non-scoped packages'
+	);
+	t.is(
+		utils.slugifyPackageName('@author/thing'),
+		'@author/thing',
+		'accept scoped packages'
+	);
+	t.is(
+		utils.slugifyPackageName('@author/hi/there'),
+		'author-hi-there',
+		'fall back to regular slugify if invalid scoped name'
+	);
 });
 
 test.serial('prompts for description', async () => {
@@ -113,7 +128,7 @@ test.serial('prompts for description', async () => {
 		website: 'test.com',
 		cli: false,
 		nyc: true,
-		codecov: true
+		codecov: true,
 	});
 
 	await pify(generator.run.bind(generator))();
@@ -129,7 +144,7 @@ test.serial('defaults to superb description', async () => {
 		website: 'test.com',
 		cli: false,
 		nyc: true,
-		codecov: true
+		codecov: true,
 	});
 
 	await pify(generator.run.bind(generator))();
