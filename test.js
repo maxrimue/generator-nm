@@ -9,7 +9,7 @@ let generator;
 
 test.beforeEach(async () => {
 	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
-	generator = helpers.createGenerator('nm:app', ['../app'], null, {
+	generator = helpers.createGenerator('nmp:app', ['../app'], null, {
 		skipInstall: true,
 	});
 });
