@@ -1,6 +1,6 @@
 {
 	"name": "generator-nmp",
-	"version": "3.5.0",
+	"version": "3.6.0",
 	"description": "Scaffold out a node module (with prettier)",
 	"license": "MIT",
 	"repository": "maxrimue/generator-nmp",
