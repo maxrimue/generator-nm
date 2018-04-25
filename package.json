@@ -15,7 +15,9 @@
 	"scripts": {
 		"test": "xo && ava"
 	},
-	"files": ["app"],
+	"files": [
+		"app"
+	],
 	"keywords": [
 		"yeoman-generator",
 		"plugin",
@@ -47,7 +49,9 @@
 		"failWithoutAssertions": false
 	},
 	"xo": {
-		"ignores": ["app/templates/**"],
+		"ignores": [
+			"app/templates/**"
+		],
 		"prettier": true
 	}
 }
