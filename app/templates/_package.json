@@ -26,13 +26,13 @@
 		""
 	],
 	"dependencies": {<% if (cli) { %>
-		"meow": "^3.7.0"
+		"meow": "latest"
 	<% } %>},
 	"devDependencies": {
-		"ava": "^0.20.0",<% if (codecov) { %>
+		"ava": "latest",<% if (codecov) { %>
 		"codecov": "^2.2.0",<% } %><% if (nyc) { %>
 		"nyc": "^11.0.0",<% } %>
-		"xo": "^0.18.2"
+		"xo": "latest"
 	}<% if (codecov) { %>,
 	"nyc": {
 		"reporter": [
